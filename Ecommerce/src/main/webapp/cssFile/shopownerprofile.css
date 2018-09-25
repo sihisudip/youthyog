@@ -1,0 +1,44 @@
+.shop_owner_add_product_full_area {
+    margin: 3%;
+}
+#shop_owner_heading {
+    font-size: 30px;
+    font-weight: 700;
+    float: left;
+    width: 75%;
+}
+.add_product_area_account_information {
+    background-color: #80808085;
+    padding: 8px 40px;
+    border-radius: 20px;
+
+}
+div#shop_owner_account_name {
+    margin-bottom: 10px;
+}
+span.shop_owner_edit_profile {
+    background: #fff;
+    padding: 2px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    
+}
+.only_add_to_cart_area {
+    margin-bottom: 30%;
+}
+
+    div#shop_owner_all_uploaded_product {
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    width: 24%;
+    
+}
+.all_previous_shop_owner_product_bottom_border{
+	border-bottom: 2px solid;
+    padding-bottom: 5px;
+	font-size: 20px;
+    font-weight: 700;
+    }
+    
+    

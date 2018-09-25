@@ -1,0 +1,19 @@
+.product_first_row img {
+    width: 400px;
+    : ;
+}
+.producy_full_area {
+    margin-top: 3%;
+           height: 500px;
+        background-color: #fff;
+}
+.product_first_row {
+    width: 42%;
+    float: left;
+}
+.product_first_row img {
+    padding: 11px;
+    border: 1px solid;
+    margin: 39px;
+    width: 500px;
+}

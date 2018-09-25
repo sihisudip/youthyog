@@ -1,0 +1,41 @@
+.login_signup_total_area {
+        margin-top: 6%;
+    position: absolute;
+    left: 40%;
+    padding: 20px;
+}
+.loginheader {
+    font-size: 25px;
+    color: blue;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+.formboxarea {
+    border: 1px solid;
+    padding: 30px 50px;
+    margin-bottom: 30px;
+}
+.boxheadertext {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.emal_phone_text_line {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+input[type="text"] {
+    width: 240px;
+}
+.login_sing_up_button input[type="submit"] {
+    width: 240px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.login_sing_up_create_account_button input[type="submit"] {
+	 cursor: pointer;
+
+}
+input[type="submit"] {
+    cursor: pointer;
+}
