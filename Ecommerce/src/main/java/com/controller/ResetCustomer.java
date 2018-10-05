@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bean.Customer;
 import com.service.CustomerService;
+import com.service.SellerService;
 
 public class ResetCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,18 +31,41 @@ public class ResetCustomer extends HttpServlet {
 			
 			String cus_email=(String)session.getAttribute("cus_email");
 			
-			CustomerService ss=new CustomerService();
-			boolean pass_con=ss.reset_pass(old_pass, new_pass,confirm_pass, cus_email);
+			CustomerService cs=new CustomerService();
+			boolean pass_con=cs.reset_pass(old_pass, new_pass,confirm_pass, cus_email);
 			if(pass_con) {
-				response.sendRedirect("edit_seller_profile.jsp");
+				response.sendRedirect("customer_account.jsp");
 			}
 			else {
-				response.sendRedirect("seller_pass_reset.jsp");
+				response.sendRedirect("customer_pass_reset.jsp");
 			}
 			
 		}
 		
-		
+if(request.getParameter("btn-customer-contact")!=null) {
+			
+			String customer_name=request.getParameter("buyer_name");
+			String cus_email=request.getParameter("buyer_email");
+			String mobile=request.getParameter("cus_mobile");
+			String dob=request.getParameter("dob");
+			
+			
+			Customer cus=new Customer();
+			
+			cus.setCustomer_name(customer_name);
+			cus.setCustomer_email(cus_email);
+			cus.setCustomer_mobile(mobile);
+			cus.setCus_dob(dob);
+			
+			
+			CustomerService cs=new CustomerService();
+			
+			boolean reset_con=cs.customer_reset(cus); 
+			
+			if(reset_con) {
+				response.sendRedirect("customer_account.jsp");
+			}
+		}
 		
 		
 	}

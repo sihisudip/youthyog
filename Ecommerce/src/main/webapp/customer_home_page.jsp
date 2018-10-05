@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.Query"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="org.hibernate.service.ServiceRegistry"%>
+<%@page import="org.hibernate.boot.registry.StandardServiceRegistryBuilder"%>
+<%@page import="org.hibernate.cfg.Configuration"%>
+<%@page import="com.bean.Products"%>
 
 <!doctype html>
 <html lang="en">
@@ -35,7 +43,30 @@
 			response.sendRedirect("index.jsp");
 		}
 	%>
+	
+	<%
+String pro_name=request.getParameter("pro_name");
 
+Session session2;
+Configuration con = new Configuration().configure().addAnnotatedClass(Products.class);
+ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
+
+SessionFactory sessionFactory = con.buildSessionFactory(sr); 
+
+session2=sessionFactory.openSession();
+session2.beginTransaction();
+
+Query q=session2.createQuery("from Products");
+//q.setParameter("pname", "%"+pro_name+"%");
+List<Products> pro=q.list();
+
+session2.getTransaction().commit();
+session2.close();
+
+
+
+%>
+	
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<a class="navbar-brand" href="#">Website Logo</a>
@@ -92,10 +123,14 @@
 
 
 	<div class="header_searchmenu_allmenu">
+	<form action="SearchProduct">
 		<div class="searceare">
-			<input class="form-control" type="text" placeholder="Search"
-				aria-label="Search">
+			<input class="form-control" type="text" placeholder="Search for products"
+				aria-label="Search" name="pro_name">
+				
 		</div>
+		<input type="submit" name="btn-search-product" value="Search">
+	</form>
 	</div>
 
 	<div class="all_header_menu">
@@ -144,67 +179,24 @@
 	<div class="firstproductarea">
 		<div class="areatitle">LATEST PRODUCT</div>
 		<div class="row">
+		
+			<table>
+			<tr>
+			<%for(Products p:pro){ %>
+			<td>
 			<div class="col-6 col-md-2">
-				<img src="images/p2.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
+			<img src="<%= p.getImages() %>"><br>
+			<span class="producttitle"><%= p.getProduct_name() %></span><br>
+			<span class="productprice"><strong>Product Price-</strong>
+						<%=p.getSelling_price() %>/- (<%=p.getDiscount() %>% Off)</span><br>
+			<span class="addcart"><a href="cart.jsp?pid=<%= p.getId()%>">Add Cart</a></span>
+			
 			</div>
-			<div class="col-6 col-md-2">
-				<img src="images/p1.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-			<div class="col-6 col-md-2">
-				<img src="images/p3.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-			<div class="col-6 col-md-2">
-				<img src="images/p4.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-			<div class="col-6 col-md-2">
-				<img src="images/p3.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-			<div class="col-6 col-md-2">
-				<img src="images/p3.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-
+			</td>
+			<%} %>
+			</tr>
+			</table>
+			
 
 		</div>
 	</div>
@@ -273,7 +265,7 @@
 		<div class="footer_first_section">
 			About<br>About us<br>Contact us<br>Careers<br>Our
 			Stories<br><br>
-			<a href="login.jsp">Seller Login</a>
+			<a href="seller_login.jsp">Seller Login</a>
 		</div>
 		<div class="footer_second_section">
 			Help<br>Paymeny<br>Shipping<br>Cancelletion & return

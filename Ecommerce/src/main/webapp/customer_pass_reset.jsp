@@ -5,9 +5,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-</head>
-<body>
+<style type="text/css">
+.header{
+text-align: center;
+}
 
+</style>
+</head>
+<body><br>
+	<div class="header">
+	<h1>Reset Password</h1><br><br>
 	<form action="ResetCustomer" method="post">
 		<label>Enter Old Password </label><input type="password"
 			name="old_pass" placeholder="Old Password" /><br>
@@ -18,6 +25,6 @@
 		<br> <input type="submit" name="btn-customer-pass-reset"
 			value="Save" />
 	</form>
-
+</div>
 </body>
 </html>

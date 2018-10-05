@@ -14,21 +14,6 @@
 
 <script type="text/javascript">
 
-function disp_qa()
-{
-    document.getElementById("form_d").style.display="block";
-    document.getElementById("form_da").style.display = "block";
-    document.getElementById("form_sub").style.display="block";
-    document.getElementById("form_can").style.display="block";
-}
-
-
-
-function invisible(){
-
-	document.getElementById("pass_change").style.display="none";
-
-}
 </script>
 </head>
 <body>
@@ -39,8 +24,8 @@ function invisible(){
 	<br>
 	<br>
 	<div id="header">
-		<a href="#">Contact Details</a>&emsp; <a href="javascript:void()"
-			onclick="disp_qa()">Reset Password</a>&emsp;
+		<a href="customer_contact_details.jsp">Contact Details</a>&emsp;
+		<a href="customer_pass_reset.jsp">Reset Password</a>&emsp;
 			
 	</div>
 </body>

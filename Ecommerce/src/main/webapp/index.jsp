@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.Query"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="org.hibernate.service.ServiceRegistry"%>
+<%@page import="org.hibernate.boot.registry.StandardServiceRegistryBuilder"%>
+<%@page import="org.hibernate.cfg.Configuration"%>
+<%@page import="com.bean.Products"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +32,25 @@
 <link href="cssFilecarousel.css" rel="stylesheet">
 </head>
 <body>
+<%
+String pro_name=request.getParameter("pro_name");
 
+Session session2;
+Configuration con = new Configuration().configure().addAnnotatedClass(Products.class);
+ServiceRegistry sr = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
+
+SessionFactory sessionFactory = con.buildSessionFactory(sr); 
+
+session2=sessionFactory.openSession();
+session2.beginTransaction();
+
+Query q=session2.createQuery("from Products");
+//q.setParameter("pname", "%"+pro_name+"%");
+List<Products> pro=q.list();
+
+session2.getTransaction().commit();
+session2.close();
+%>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<a class="navbar-brand" href="#">Website Logo</a>
@@ -87,13 +115,13 @@
 		data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="1.jpg" alt="First slide">
+				<img class="d-block w-100" src="images/1.jpg" alt="First slide">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="2.jpg" alt="Second slide">
+				<img class="d-block w-100" src="images/2.jpg" alt="Second slide">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="1.jpg" alt="Third slide">
+				<img class="d-block w-100" src="images/1.jpg" alt="Third slide">
 			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls"
@@ -110,67 +138,23 @@
 	<div class="firstproductarea">
 		<div class="areatitle">LATEST PRODUCT</div>
 		<div class="row">
+			
+			<table cellpadding="10">
+			<tr>
+			<%for(Products p:pro){ %>
+			<td>
 			<div class="col-6 col-md-2">
-				<img src="p2.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
+			<img src="<%= p.getImages() %>"><br>
+			<span class="producttitle"><%= p.getProduct_name() %></span><br>
+			<span class="productprice"><strong>Product Price-</strong>
+						<%=p.getSelling_price() %>/- (<%=p.getDiscount() %>% Off)</span><br>
+			<span class="addcart"><a href="#">Add Cart</a></span>
+			
 			</div>
-			<div class="col-6 col-md-2">
-				<img src="p1.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-			<div class="col-6 col-md-2">
-				<img src="p3.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-			<div class="col-6 col-md-2">
-				<img src="p4.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-			<div class="col-6 col-md-2">
-				<img src="p3.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-			<div class="col-6 col-md-2">
-				<img src="p3.jpg"><br>
-				<center>
-					<span class="producttitle">Product Name</span><br>
-					<span class="productprice"><strong>Product Price-</strong>
-						300/- (30% Off)</span><br>
-					<br>
-					<span class="addcart">Add Cart</span>
-				</center>
-			</div>
-
+			</td>
+			<%} %>
+			</tr>
+			</table>
 
 		</div>
 	</div>
@@ -179,13 +163,13 @@
 	<div class="secondproductarea">
 		<div class="row">
 			<div class="col-6 col-md-4">
-				<img src="ins1.jpg">
+				<img src="images/ins1.jpg">
 			</div>
 			<div class="col-6 col-md-4">
-				<img src="ins2.jpg">
+				<img src="images/ins2.jpg">
 			</div>
 			<div class="col-6 col-md-4">
-				<img src="ins1.jpg">
+				<img src="images/ins1.jpg">
 			</div>
 		</div>
 	</div>
@@ -194,37 +178,37 @@
 		<div class="areatitle">Product Title</div>
 		<div class="row">
 			<div class="col-6 col-md-2">
-				<img src="p2.jpg"><br>
+				<img src="images/p2.jpg"><br>
 				<center>
 					<span class="addcart">Add Cart</span>
 				</center>
 			</div>
 			<div class="col-6 col-md-2">
-				<img src="p1.jpg"><br>
+				<img src="images/p1.jpg"><br>
 				<center>
 					<span class="addcart">Add Cart</span>
 				</center>
 			</div>
 			<div class="col-6 col-md-2">
-				<img src="p3.jpg"><br>
+				<img src="images/p3.jpg"><br>
 				<center>
 					<span class="addcart">Add Cart</span>
 				</center>
 			</div>
 			<div class="col-6 col-md-2">
-				<img src="p4.jpg"><br>
+				<img src="images/p4.jpg"><br>
 				<center>
 					<span class="addcart">Add Cart</span>
 				</center>
 			</div>
 			<div class="col-6 col-md-2">
-				<img src="p3.jpg"><br>
+				<img src="images/p3.jpg"><br>
 				<center>
 					<span class="addcart">Add Cart</span>
 				</center>
 			</div>
 			<div class="col-6 col-md-2">
-				<img src="p3.jpg"><br>
+				<img src="images/p3.jpg"><br>
 				<center>
 					<span class="addcart">Add Cart</span>
 				</center>
@@ -239,7 +223,7 @@
 		<div class="footer_first_section">
 			About<br>About us<br>Contact us<br>Careers<br>Our
 			Stories<br><br>
-			<a href="login.jsp">Seller Login</a>
+			<a href="seller_login.jsp">Seller Login</a>
 		</div>
 		<div class="footer_second_section">
 			Help<br>Paymeny<br>Shipping<br>Cancelletion & return

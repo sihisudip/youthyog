@@ -62,4 +62,17 @@ public class CustomerService {
 		cd1.customer_reset_pass(new_pass,cid);
 		return true;
 	}
+	
+	public boolean customer_reset(Customer c1) {
+		CustomerDao cd1, cd2;
+		Customer c2;
+		String cus_email=c1.getCustomer_email();
+		
+		if (cus_email.isEmpty()) {
+			return false;
+		}
+		cd2 = new CustomerDao();
+		cd2.reset_customer_contact(c1);
+		return true;
+	}
 }

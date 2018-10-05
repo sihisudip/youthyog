@@ -6,7 +6,7 @@
 <%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head>  
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -50,7 +50,7 @@
 		List<Products> pro = sd.get_all_product(sid);
 		int i = 1;
 	%>
-	<table id="pro_details">
+	<table id="pro_details" cellpadding="15">
 		<thead>
 			<tr>
 				<th>Serial No</th>
@@ -78,12 +78,7 @@
 				<td><%=p.getDiscount()%>%</td>
 				<td><%=p.getProduct_description()%></td>
 				<td>
-					<form action="ProductReset" onsubmit="return confirmation()">
-						<input type="hidden" name="pid" value="<%=p.getId()%>"> <input
-							type="submit" name="product-delete" value="Delete">
-
-					</form>
-
+					<a href="ProductReset?pid=<%= p.getId()%>&action=delete" onclick="return confirm('Are yout want to delete?')" >Delete</a>
 				</td>
 				<td><a href="edit_product.jsp?pid=<%=p.getId()%>" >Edit</a></td>
 			</tr>

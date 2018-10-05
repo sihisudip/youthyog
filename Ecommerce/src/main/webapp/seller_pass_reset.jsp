@@ -11,8 +11,9 @@
 }
 </style>
 </head>
-<body><br><br><br>
+<body><br>
 	<div class="header">
+	<h1>Reset Password</h1><br><br>
 	<form action="ResetSeller" method="post">
 	<label>Enter Old Password </label><input type="password" name="old_pass" placeholder="Old Password"/><br><br>
 	<label>Enter New Password </label><input type="password" name="new_pass" placeholder="New Password"/><br><br>

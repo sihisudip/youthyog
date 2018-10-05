@@ -72,11 +72,11 @@ public class Signup extends HttpServlet {
 				SellerDao sd=new SellerDao();
 				Seller sel=sd.fetch_seller(seller_email);
 				session.setAttribute("sid", sel.getId());
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("seller_login.jsp");
 			} else {
 				System.out.println("Not inserted");
 				request.setAttribute("error", "Something wrong..Please try again");
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("seller_signup.jsp");
 			}
 			
 
@@ -114,12 +114,10 @@ public class Signup extends HttpServlet {
 			boolean cus_con=cs.customer_signup(cus);
 			
 			if (cus_con == true) {
-				System.out.println("inserted");
-				//response.sendRedirect("index.jsp");
+				response.sendRedirect("customer_login.jsp");
 			} else {
-				System.out.println("Not inserted");
-				//request.setAttribute("error", "Something wrong..Please try again");
-				//response.sendRedirect("seller_signup.jsp");
+				request.setAttribute("error", "Something wrong..Please try again");
+				response.sendRedirect("customer_signup.jsp");
 			}
 			
 			

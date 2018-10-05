@@ -10,6 +10,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+.header{
+text-align: center;
+}
+
+</style>
 </head>
 <body>
 
@@ -22,6 +28,7 @@ Products pro=sd.get_product(pid);
 System.out.print(pro);
 
 %>
+<div class="header">
 <div class="Shop_owner_product_upload_form">
 				<h1>Edit Product Details</h1>
 				<form action="ProductReset" name="shop_owner" method="post" >
@@ -48,7 +55,7 @@ System.out.print(pro);
 					 <input	type="submit" name="btn_pro_upload" value="Save">
 				</form>
 			</div>
-
+</div>
 
 
 </body>

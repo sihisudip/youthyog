@@ -46,7 +46,7 @@
 		response.setHeader("Expires", "0");
 
 		if (session.getAttribute("email") == null) {
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("seller_login.jsp");
 		}
 	%>
 

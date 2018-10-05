@@ -26,7 +26,7 @@ text-align: center;
 	
 	<div class="Shop_owner_product_upload_form">
 				<h1>Upload Your Product</h1>
-				<form action="ProductUpload" name="shop_owner" method="post" >
+				<form action="ProductUpload" name="shop_owner" method="post">
 					<br>
 					<div class="shop_owner_add_product_text_feild">Product Name:</div>
 					<input type="text" name="product_name"><br>
@@ -45,7 +45,8 @@ text-align: center;
 					<input type="text" name="product_des"><br>
 					<div class="shop_owner_add_product_text_feild">Product
 						Images:</div>
-					<input type="file" name="product_img" accept="image/*"><br><br>
+					<input type="file" name="product_img" accept="image/*">
+					<br><br>
 					 <input	type="submit" name="btn_pro_upload" value="Upload">
 				</form>
 			</div>

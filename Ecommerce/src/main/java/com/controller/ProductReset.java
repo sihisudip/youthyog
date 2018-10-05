@@ -23,8 +23,8 @@ public class ProductReset extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		if (request.getParameter("product-delete") != null) {
+		String action=request.getParameter("action");
+		if (action.equals("delete")) {
 
 			String pid = request.getParameter("pid");
 
@@ -63,6 +63,7 @@ public class ProductReset extends HttpServlet {
 
 			SellerDao sd = new SellerDao();
 			sd.reset_product_details(pro, pid);
+			response.sendRedirect("previous_uploaded_pro.jsp");
 
 		}
 
